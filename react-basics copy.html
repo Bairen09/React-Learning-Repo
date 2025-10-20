@@ -13,25 +13,29 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function Counter({count, setCount}){
-        function increaseCount(){
-          setCount(count+1)
-        }
-        return(
-          <button onClick={increaseCount}>Clicked {count} {count===1?'time':'times'}</button>
-        )
-      }
+      
     
       function App(){
-        const [count, setCount]=React.useState(0)
-        function reset(){
-          setCount(0)
+        const [input, setInput]= React.useState('')
+
+        function saveInputText(event){
+          setInput(event.target.value)
         }
+        function reset(){
+          setInput('')
+        }
+        function example(){
+          setInput('Bairan')
+        }
+        
         return(
           <>
-          <Counter count={count} setCount={setCount}/>
-          <Counter count={count} setCount={setCount}/>
-          <button onClick={reset}>Reset</button>
+          <input placeholder="Type a name"
+           onChange={saveInputText} value={input}></input>
+           <button onClick={reset}>Reset</button>
+           <button onClick={example}>Example</button>
+           <p>Hello {input}</p>
+           
           </>
         )
       }
